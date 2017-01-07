@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <!--node_modules\socket.io-client\dist-->
+    <script src="socket.io/socket.io.js"></script>
+
+
+    <script>
+        var socket;
+
+        function onload() {
+            socket = io.connect('http://pilli-pc:9040');
+
+            socket.on('dateEmit', function(d) {
+                document.getElementById('timer').innerHTML = d;
+            })
+
+        }
+
+        function submitData() {
+            var input = document.getElementById('inputdata').value;
+
+            socket.emit('submitData', input);
+        }
+    </script>
+
+</head>
+
+<body onload="onload()">
+
+    <span id="timer"></span>
+
+
+    <input type="text" name="" id="inputdata" class="form-control" value="" required="required" pattern="" title="">
+
+
+    <button type="submit" class="btn btn-primary" onclick="submitData()">Submit</button>
+
+
+    <h1 class="text-center">Hello World</h1>
+
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
